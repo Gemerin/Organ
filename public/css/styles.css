@@ -1,0 +1,732 @@
+body {
+    margin: 0;
+    background-image: url(../Images/blue.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgb(138, 164, 185);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    visibility: hidden;
+}
+
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Hide main wrapper until ready */
+.hidden {
+    visibility: hidden;
+}
+
+body.loaded {
+    visibility: visible;
+    display: flex;
+}
+
+.login-form {
+    width: 300px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+
+.login-form input {
+    width: 95%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+}
+
+#login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#register-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.register-form {
+    width: 300px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+.register-form input {
+    width: 95%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+}
+
+.profile-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+ .profile-link a,
+.profile-link form button {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #006de2;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+} 
+
+ .profile-link a:hover,
+.profile-link form button:hover {
+    background-color: #006de2;
+    transform: scale(1.05);
+}
+ 
+/* Styling for the todo container */
+#todo-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading inside the todo container */
+#todo-container h2 {
+    text-align: center;
+    color: #2e3e55;
+    margin-bottom: 20px;
+}
+
+/* Form styling inside the todo container */
+#todo-container form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#todo-container form label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#todo-container form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#todo-container form button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #006de2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#todo-container form button:hover {
+    background-color: #006de2;
+}
+
+/* Todo list styling */
+#todo-container ul {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todo-container ul li {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#todo-container ul li strong {
+    font-weight: bold;
+    color: #2e3e55;
+}
+
+/* No todos message */
+#todo-container p {
+    text-align: center;
+    color: #2e3e55;
+    font-size: 16px;
+}
+
+/* Action buttons */
+.todo-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-form {
+    margin: 0;
+}
+
+button img.icon {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Scoped .btn styles for login/register/auth/profile areas */
+.login-form .btn,
+.register-form .btn,
+.auth-links .btn,
+.profile-links .btn
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #006de2;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.login-form .btn:hover,
+.register-form .btn:hover,
+.auth-links .btn:hover,
+.profile-actions .btn:hover,
+.profile-info .btn:hover,
+.change-password .btn:hover,
+.btn-container .btn:hover,
+.profile-links .btn:hover
+ {
+  background-color: #006de2;
+  transform: scale(1.05);
+}
+
+/* hover effect for icons */
+button:hover img.icon {
+    transform: scale(1.1);
+}
+
+.edit-input,
+.todo-text,
+.todo-paragraph {
+    font-family: inherit;
+    font-weight: bold;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    color: #2e3e55;
+    box-shadow: none;
+    outline: none;
+}
+
+/* home login page*/
+.auth-links {
+    text-align: center;
+    margin-top: 50px;
+    width: 300px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.about {
+
+}
+
+.auth-links h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+.auth-links p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* General Profile Page Styling */
+.profile-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Profile Block Styling */
+.profile-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* User Info Block */
+.profile-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.profile-info p {
+    font-size: 16px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info form {
+    margin: 0 auto;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.profile-info .btn {
+    background-color: #acacac;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #2e3e55;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-info .btn:hover {
+    background-color: #eaeaea;
+    border-color: #ccc;
+    transform: scale(1.05);
+}
+
+/* Timer History Block */
+.timer-history h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.timer-history p {
+    font-size: 16px;
+    color: #2e3e55;
+    text-align: center;
+}
+
+/* Actions Block */
+.profile-actions .btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.profile-actions .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    background-color: #006de2;
+}
+
+.profile-actions .btn:hover {
+    background-color: #006de2;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.profile-actions form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #006de2;
+}
+
+.profile-actions form button:hover {
+    background-color: #006de2;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Change Password Section */
+.change-password h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.change-password .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.change-password input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.change-password .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Align buttons to opposite sides */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.change-password-btn,
+.delete-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+.change-password-btn {
+    background-color: #006de2;
+    color: #fff;
+}
+
+.change-password-btn:hover {
+    background-color: #006de2;
+    transform: scale(1.05);
+}
+
+/* terms*/
+.terms {
+    margin: 15px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+.terms input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.terms a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* Terms Page Styling */
+.terms-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    color: #2e3e55;
+}
+
+.terms-page h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #0a0a0a;
+}
+
+.terms-page p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.terms-page a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.terms-page a:hover {
+    text-decoration: underline;
+}
+
+/* Action buttons */
+.todo-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.action-form {
+    margin: 0;
+}
+
+.delete-button,
+.edit-button {
+    padding: 5px 5px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+button img.icon {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+button {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* hover effect for icons */
+button:hover img.icon {
+    transform: scale(1.1);
+}
+
+.edit-input,
+.todo-text,
+.todo-paragraph {
+    font-family: inherit;
+    font-weight: bold;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    color: #2e3e55;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Timer History Block */
+.profile-block.timer-history {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Session List Items */
+#session-item {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #2e3e55;
+}
+
+#session-list {
+    list-style-type: none;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Pagination Buttons */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #006de2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+}
+
+.pagination a:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.flash-message {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.fade-out {
+    animation: fadeOut 5s forwards;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.flash-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: inherit;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.todo-item.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #2e3e55;
+    z-index: 9999;
+}
+
+.profile-links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+}

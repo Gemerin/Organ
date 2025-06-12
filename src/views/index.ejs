@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="shortcut icon" href="#">
+    <script type="module" src="./js/index.js"></script>
+    <% if (user) { %>
+        <script type="module" src="./js/requests.js"></script>
+        <% } %>
+            <title>
+                <%= title %>
+            </title>
+</head>
+
+<body>
+    <div class="flash-message alert hidden">
+        <span class="flash-text"></span>
+        <button class="flash-close">&times;</button>
+    </div>
+    <div id="loading-screen">Loading...</div>
+    <div id="main-wrapper" class="hidden">
+        <% if (user) { %>
+            <%- include('todo', { todos: todos }) %>
+                <div class="profile-link">
+                    <a href="./profile" class="btn" role="button">Profile</a>
+                    <form action="./logout" method="POST" style="display: inline;">
+                        <button type="submit" class="btn">Logout</button>
+                    </form>
+                </div>
+    </div>
+
+    <app-container></app-container>
+    <% } else { %>
+        <div class="auth-links">
+            <h2>Welcome to Organ</h2>
+            <p>Your Focus Helper</p>
+            <a href="./login" class="btn" role="button">Login</a>
+            <a href="./register" class="btn" role="button">Register</a>
+            <a href="./about" class="btn" role="button">About Organ</a>
+
+        </div>
+        <% } %>
+</body>
+
+</html>

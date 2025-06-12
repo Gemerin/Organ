@@ -1,0 +1,31 @@
+<div id="todo-container">
+    <h2>Todo</h2>
+
+    <!-- Form to add a new todo -->
+    <form action="/api/todo" method="POST">
+        <input type="text" class="todo-text" name="text" required placeholder="Enter your todo" />
+        <button type="submit">Add Todo</button>
+    </form>
+
+    <% if (!todos || todos.length===0) { %>
+        <p class="no-todos">No todos yet! Add one above.</p>
+        <% } %>
+
+            <!-- Display the list of todos -->
+            <ul class="todo-list">
+                <% if (todos && todos.length > 0) { %>
+                  <% todos.forEach(todo => { %>
+                    <li class="todo-item">
+                      <input type="hidden" class="todo-id" value="<%= todo._id %>" />
+                      <span class="todo-text"><%= todo.text %></span>
+                      <div class="todo-actions">
+                        <button class="delete-button"><img src="./Images/trash.png" alt="Delete" class="icon" /></button>
+                        <button class="edit-button"><img src="./Images/edit.png" alt="Edit" class="icon" /></button>
+                        <button class="move-up-button"><img src="./Images/up.png" alt="Move up" class="icon" /></button>
+                        <button class="move-down-button"><img src="./Images/down.png" alt="Move down" class="icon" /></button>
+                      </div>
+                    </li>
+                  <% }) %>
+                <% } %>
+              </ul>
+            </div>

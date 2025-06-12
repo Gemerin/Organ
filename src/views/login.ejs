@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="shortcut icon" href="#">
+    <script type="module" src="./js/index.js"></script>
+</head>
+
+<body id="login-body">
+    <div id="main-wrapper">
+        <div id="loading-screen">Loading...</div>
+        <% if (locals.flash && locals.flash.text && locals.flash.type) { %>
+            <div class="flash-message <%= locals.flash.type === 'error' ? 'flash-error' : 'flash-success' %>">
+                <span class="flash-text">
+                    <%= locals.flash.text %>
+                </span>
+                <button class="flash-close" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+            <% } %>
+                <div class="login-form">
+                    <h2>Login</h2>
+                        <form action="./login" method="POST">
+                            <input type="text" name="email" placeholder="email" required>
+                            <input type="password" name="password" placeholder="Password" required>
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+
+                        <a href="./register" class="btn" role="button">Register</a>
+                        <a href="./" class="btn" role="button">Home</a>
+                    </div>
+                </div>
+    </div>
+</body>
+
+</html>

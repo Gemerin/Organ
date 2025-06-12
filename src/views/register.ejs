@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="shortcut icon" href="#">
+    <script type="module" src="./js/index.js"></script>
+</head>
+
+<body id="register-body">
+    <div id="loading-screen">Loading...</div>
+    <% if (locals.flash && locals.flash.text && locals.flash.type) { %>
+        <div class="flash-message <%= locals.flash.type === 'error' ? 'flash-error' : 'flash-success' %>">
+            <span class="flash-text">
+                <%= locals.flash.text %>
+            </span>
+            <button class="flash-close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+        <% } %>
+            <div class="register-form">
+                <h2>Register</h2>
+                <form action="./register" method="POST">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <div class="terms">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="./terms" target="_blank">Terms and
+                                Conditions</a></label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+                <a href="./" class="btn" role="button">Home</a>
+            </div>
+</body>
+
+</html>

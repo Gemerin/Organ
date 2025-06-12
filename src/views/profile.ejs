@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <script type="module" src="./js/index.js"></script>
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <div id="loading-screen">Loading...</div> 
+    <div id="main-wrapper">
+
+    <div class="profile-page">
+        <!-- User Info Block -->
+        <div class="profile-block profile-info">
+            <h1>Welcome, <%= user.username %>!</h1>
+            <p><strong>Email:</strong>
+                <%= user.email %>
+            </p>
+        </div>
+
+        <!-- Timer History Block -->
+        <div class="profile-block timer-history">
+            <h2>Your Timer History</h2>
+            <ul id="session-list" class="session-list">
+                <% if (sessions && sessions.length> 0) { %>
+                    <% sessions.forEach(session=> { %>
+                        <li class="session-item">
+                            <span>
+                                <%= session.type %> - <%= Math.floor(session.duration) %> minutes on
+                                        <%= new Date(session.date).toLocaleDateString('en-US', { timeZone: 'Europe/Stockholm',                                        month: 'short' ,
+                                            day: '2-digit' , year: 'numeric' }) %>
+                                            at <%= new Date(session.date).toLocaleTimeString('en-US', { timeZone: 'Europe/Stockholm',
+                                            hour12: false })
+                                                %>
+                            </span>
+                        </li>
+                        <% }) %>
+                            <% } else { %>
+                                <li>No session history found.</li>
+                                <% } %>
+            </ul>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <% if (currentPage> 1) { %>
+                    <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+                    <% } %>
+                        <% if (currentPage < totalPages) { %>
+                            <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                            <% } %>
+            </div>
+        </div>
+
+
+       
+        <!-- Change Password Block -->
+        <div class="profile-block change-password">
+            <h2>Manage Your Account</h2>
+        
+            <!-- Change Password Form -->
+            <form action="./change-password" method="POST" class="form-inline">
+                <div class="form-group">
+                    <input type="password" name="currentPassword" placeholder="Current Password" required>
+                    <input type="password" name="newPassword" placeholder="New Password" required>
+                    <input type="password" name="confirmPassword" placeholder="Confirm New Password" required>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="change-password-btn">Change Password</button>
+                </div>
+            </form>
+        
+            <!-- Delete Account Form -->
+            <form action="./delete-account" method="POST">
+                <div class="btn-container">
+                    <button type="submit" class="delete-btn">Delete Account</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Actions Block -->
+        <div class="profile-block profile-actions">
+            <div class="btn-container">
+                <a href="./" class="btn" role="button">Back to Home</a>
+                <form action="./logout" method="POST">
+                    <button type="submit" class="btn">Logout</button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

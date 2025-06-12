@@ -1,0 +1,11 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="/js/index.js"></script>
+</head>
+    <% if (locals.flash && locals.flash.text && locals.flash.type) { %>
+        <div class="alert alert-<%= locals.flash.type %>">
+          <span class="close">&times;</span> 
+          <%= locals.flash.text %>
+        </div>
+      <% } %>
+      
