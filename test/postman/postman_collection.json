@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "dea47a1f-b268-45d6-a985-8f21ce85714d",
+		"name": "613",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31180146"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page 404",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/profile",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Generate unique email and username using the current timestamp\r",
+							"const timestamp = Date.now()\r",
+							"const uniqueEmail = `testuser_${timestamp}@example.com`\r",
+							"const uniqueUsername = `testuser_${timestamp}`\r",
+							"\r",
+							"// Set the email and username as environment variables\r",
+							"pm.environment.set(\"uniqueEmail\", uniqueEmail)\r",
+							"pm.environment.set(\"uniqueUsername\", uniqueUsername)\r",
+							"// Ensure email and password fields are present\r",
+							"const requestBody = JSON.parse(pm.request.body.raw);\r",
+							"pm.test(\"Request body contains email and password fields\", function () {\r",
+							"    pm.expect(requestBody).to.have.property(\"email\")\r",
+							"    pm.expect(requestBody).to.have.property(\"password\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{uniqueUsername}}\",\r\n    \"email\": \"{{uniqueEmail}}\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/register",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const requestBody = JSON.parse(pm.request.body.raw)\r",
+							"\r",
+							"pm.test(\"Request body contains email and password fields\", function () {\r",
+							"    pm.expect(requestBody).to.have.property(\"email\")\r",
+							"    pm.expect(requestBody).to.have.property(\"password\")\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"email\": \"{{uniqueEmail}}\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/login",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add todo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwtToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"Test task from Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/api/todo/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"api",
+						"todo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit todo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwtToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"Test task from Postman edit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/api/todo/6827400f6277e78a112d4e65/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"api",
+						"todo",
+						"6827400f6277e78a112d4e65",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete todo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwtToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/api/todo/6827400f6277e78a112d4e65/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"api",
+						"todo",
+						"6827400f6277e78a112d4e65",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwtToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-72.lnu.se/organ/delete-account",
+					"protocol": "https",
+					"host": [
+						"cscloud8-72",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"organ",
+						"delete-account"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
