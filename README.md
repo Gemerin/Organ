@@ -97,7 +97,7 @@ Följt av:
 
 ## Författare
 
-Projektet är utvecklat av Eva Saskia Heinemann inom ramen för kursen 1DV613 vid Linnéuniversitetet.
+Projektet är utvecklat av Eva Saskia Heinemann
 
 ## Licens
 
